@@ -1,11 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Image } from "react-native";
-import { COLORS, SIZES } from "../constants";
+import { View, StyleSheet, StatusBar, Image } from "react-native";
+import Button from "./Button";
+import { AntDesign } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { COLORS } from "../constants";
 
-const NFTImage = ({ image, imageStyles }) => {
+const NFTImage = ({ image, imageStyles, love, arrow, pressHandler }) => {
   return (
     <View style={styles.container}>
       <Image source={image} style={imageStyles} resizeMode="cover" />
+      {love && (
+        <Button
+          stylesButton={styles.buttonHeart}
+          Icon={<AntDesign name="heart" size={20} color={COLORS.second} />}
+        />
+      )}
+      {arrow && (
+        <Button
+          stylesButton={styles.buttonArrow}
+          Icon={<Feather name="arrow-left" size={20} color={COLORS.second} />}
+          pressHandler={pressHandler && pressHandler}
+        />
+      )}
     </View>
   );
 };

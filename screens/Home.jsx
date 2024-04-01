@@ -1,19 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
-  FlatList,
   Animated,
 } from "react-native";
-import { COLORS, DATA, FONTS, SIZES } from "../constants";
+import { COLORS, DATA } from "../constants";
 import { StatusBar } from "react-native";
 import NFTCard from "../components/NFTCard";
 import HomeHeader from "../components/HomeHeader";
 import NotFound from "../components/NotFound";
+import { FlashList } from "@shopify/flash-list";
 
 const Home = () => {
   const [nftsData, setNftsData] = useState(DATA);
@@ -62,10 +61,11 @@ const Home = () => {
           {!nftsData.length ? (
             <NotFound />
           ) : (
-            <FlatList
+            <FlashList
               data={nftsData}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => <NFTCard item={item} />}
+              estimatedItemSize={200}
             />
           )}
         </View>

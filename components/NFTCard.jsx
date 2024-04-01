@@ -1,9 +1,9 @@
 import {
   View,
-  Text,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
 import { COLORS, SIZES } from "../constants";
@@ -21,20 +21,22 @@ const NFTCard = ({ item }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={pressHandler}>
-        <NFTImage image={image} imageStyles={styles.imageStyles} />
-      </TouchableOpacity>
-      <View style={styles.cardTop}>
-        <NFTAvatars avatars={avatars} />
-      </View>
-      <View style={styles.cardBottom}>
-        <NFTTitle _name={name} creator={creator} date={date} />
-        <View style={{ marginTop: SIZES.small + 5 }}>
-          <NFTInfo comments={comments} views={views} price={price} love />
+    <TouchableWithoutFeedback>
+      <SafeAreaView style={styles.container}>
+        <TouchableOpacity onPress={pressHandler}>
+          <NFTImage image={image} imageStyles={styles.imageStyles} />
+        </TouchableOpacity>
+        <View style={styles.cardTop}>
+          <NFTAvatars avatars={avatars} />
         </View>
-      </View>
-    </SafeAreaView>
+        <View style={styles.cardBottom}>
+          <NFTTitle _name={name} creator={creator} date={date} />
+          <View style={{ marginTop: SIZES.small + 5 }}>
+            <NFTInfo comments={comments} views={views} price={price} love />
+          </View>
+        </View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
